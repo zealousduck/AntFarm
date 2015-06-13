@@ -3,9 +3,11 @@
 
 #define ANTFARM_DIMENSION_X 144
 #define ANTFARM_DIMENSION_Y 168
-#define ANTFARM_DIMENSIONS (GRect(0,0,ANTFARM_DIMENSION_X,ANTFARM_DIMENSION_Y))    // Dimensions of the farm, screen size?
-#define STARTING_ANTS       1
+#define ANTFARM_DIMENSIONS  (GRect(0,0,ANTFARM_DIMENSION_X,ANTFARM_DIMENSION_Y))    // Dimensions of the farm, screen size?
+#define STARTING_ANTS       5
 #define MAX_NUMBER_ANTS     10
+#define SPAWN_POINT         ((Location) {.x = 50, .y = 50})
+#define MOVE_DISTANCE       2
 #define UPDATE_INTERVAL     2  // Subject to change, corresponds to seconds?
 
 typedef struct antfarm_struct {

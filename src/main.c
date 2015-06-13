@@ -19,14 +19,24 @@ static void ant_layer_draw(Layer *layer, GContext *ctx) {
   for (int i = 0; i < antfarm->num_ants; i++) {
     current = antfarm->ant_list[i];
     point = GPoint(current.position.x, current.position.y);
-    graphics_draw_pixel(ctx, point);
+    graphics_fill_circle(ctx, point, 2);
   }
 }
 
-
+static void app_update() {
+  // Get a tm structure
+  time_t temp = time(NULL);
+  struct tm *tick_time = localtime(&temp);
+  
+  // Update farm
+  antfarm_update(antfarm);
+  
+  // Request re-draw of layers
+  layer_mark_dirty(s_ant_layer);
+}
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
-  //ant_farm_update();
+  app_update();
 }
 
 static void main_window_load(Window *window) {
@@ -36,6 +46,10 @@ static void main_window_load(Window *window) {
   
   // Ant Load
   s_ant_layer = layer_create(ANTFARM_DIMENSIONS);
+  layer_set_update_proc(s_ant_layer, ant_layer_draw);
+  
+  // Attach layers to root layer
+  layer_add_child(window_get_root_layer(window), s_ant_layer);
 }  
   
 static void main_window_unload(Window *window) {
@@ -61,7 +75,8 @@ static void init() {
   window_stack_push(s_main_window, true);
   
   // Register with TickTimerService
-  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+  //tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+  tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
   
   // Create antfarm
   antfarm = antfarm_create();

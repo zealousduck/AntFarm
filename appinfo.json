@@ -1,0 +1,23 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "stewartpatrick12@gmail.com",
+    "longName": "AntFarm",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "AntFarm",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "63ba6371-188a-4cc7-8d75-f9d84b51dfe9",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
